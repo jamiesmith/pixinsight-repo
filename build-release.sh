@@ -6,8 +6,6 @@ shopt -s globstar
 scriptsDir="src/scripts"
 releasesDir="$(pwd)/"
 
-
-
 buildDir=tmpBuild
 rm -rf "${buildDir}"
 mkdir -p "${buildDir}"
@@ -18,8 +16,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.1.14
-releaseNotes="Moving to easier repository"
+release=v0.1.15
+releaseNotes="Moving to easier repository, new build script"
 #
 # <<<<<<<
 
