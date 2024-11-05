@@ -9,7 +9,7 @@ Note: Don't omit the ending `/` or you will likely get a `400` or `404` return c
 
 ## theAstroShed's Process Icons
 If you want to see (or use) the same process icons that I do, check out 
-[theAstroShed's Process Icons repo](https://github.com/jamiesmith/pixinsight-icons)
+[theAstroShed's PixInsight process icons](https://github.com/jamiesmith/pixinsight-icons)
 ## Fix Tiled Zoom
 
 I like to tile my calibrated and integrated master frames, then stretch and zoom
