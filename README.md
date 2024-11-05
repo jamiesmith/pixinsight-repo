@@ -1,7 +1,8 @@
-# theastroshed-pixinsight-scripts
+# theAstroShed's PixInsight tools
 
-repository for PixInsight scripts and utilities
-Add this to PixInsight:
+Repository for PixInsight scripts and utilities.
+
+To use, add this to PixInsight's repository manager:
 `https://raw.githubusercontent.com/jamiesmith/pixinsight-tools/main/`
 
 Note: Don't omit the ending `/` or you will likely get a `404` return code
