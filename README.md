@@ -1,11 +1,11 @@
-# theAstroShed's PixInsight tools
+# theAstroShed's PixInsight Repo
 
 Repository for PixInsight scripts and utilities.
 
 To use, add this to PixInsight's repository manager:
-`https://raw.githubusercontent.com/jamiesmith/pixinsight-tools/main/`
+`https://raw.githubusercontent.com/jamiesmith/pixinsight-repo/main/`
 
-Note: Don't omit the ending `/` or you will likely get a `404` return code
+Note: Don't omit the ending `/` or you will likely get a `400` or `404` return code
 
 ## Fix Tiled Zoom
 

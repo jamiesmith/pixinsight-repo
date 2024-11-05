@@ -1,9 +1,12 @@
 #!/usr/local/bin/bash
 
 shopt -s globstar
-
+# Just setting up some variables
+#
 scriptsDir="src/scripts"
 releasesDir="$(pwd)/"
+
+
 
 buildDir=tmpBuild
 rm -rf "${buildDir}"
@@ -11,9 +14,14 @@ mkdir -p "${buildDir}"
 cp -r src "${buildDir}/"
 cd "${buildDir}"
 
-# CHANGE THIS, then run the script
+# CHANGE THESE, then run the script
+# >>>>>>>
 #
-release=v0.1.13
+read -p "Did you change the release notes and version? if so, press enter to continue"
+release=v0.1.14
+releaseNotes="Moving to easier repository"
+#
+# <<<<<<<
 
 for file in $(find . -type f -name *.js)
 do
@@ -35,7 +43,7 @@ then
 fi
 zipFileName="${baseZipFileName}${suffix}.zip"
 
-read -p "Sign the scripts, then press enter to continue"
+read -p "Sign the scripts in $buildDir, then press enter to continue"
 
 zip -v "${releasesDir}/${zipFileName}" ${scriptsDir}/*
 sha1=$(sha1sum ${releasesDir}/${zipFileName} | awk '{print $1}')
@@ -62,12 +70,14 @@ cat << EOF > $releasesDir/updates.xri
             </title>
             <description>
                 <p>
-                    ${version}: Skip any that aren't visible (Icons, different workspace, shades, etc)
+                    ${version}: ${releaseNotes}
                 </p>
             </description>
         </package>
     </platform>
 </xri>
 EOF
+
+read -p "Sign the updates.xri, then press enter to continue"
 
 # echo "Don't forget to sign the updates file!"
