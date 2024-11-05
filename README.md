@@ -8,9 +8,17 @@ To use, add this to PixInsight's repository manager:
 Note: Don't omit the ending `/` or you will likely get a `400` or `404` return code
 
 ## theAstroShed's Process Icons
+
 If you want to see (or use) the same process icons that I do, check out 
 [theAstroShed's PixInsight process icons](https://github.com/jamiesmith/pixinsight-icons)
-## Fix Tiled Zoom
+
+If you want to see some of my (few) images, check out my page on
+[Astrobin](http://www.astrobin.com/users/jamiesmithnc/), and if you
+want to read a little more about the gear, trials, and tribulations, 
+you can check out my blog on [theAstroShed](https://www.theastroshed.com/).
+
+## Scripts Overview
+### Fix Tiled Zoom
 
 I like to tile my calibrated and integrated master frames, then stretch and zoom
 them to fit the window.  If you check the "automatic zoom calculation" checkbox
@@ -21,7 +29,7 @@ Additionally, it will do an STF auto stretch on each window.
 If you save a process icon you can drop it onto one window and it will work
 globally
 
-## Smart Rename View
+### Smart Rename View
 
 This script simply renames the main view of an image to match whatever is in the
 filter, which allows you to hardcode values in your process icons (For example,
@@ -33,7 +41,7 @@ view name would be `foo_<filter>_bar`, or `foo_Red_bar`.
 If you click the `Batch-mode cheat enabled` and save a process icon it will apply to
 _all_ image windows rather than just the one you drop it on (kind of like a global apply)
 
-## Append Prefix or Suffix
+### Append Prefix or Suffix
 
 My workflow has changed, and I often end up with SHO & RGB workflows open at the
 same time, so I can't just rename something to `starless`. I found myself
@@ -53,6 +61,8 @@ scripts) easier, because the files always have the same name.
 
 ## Release History
 
+- TheAstroShedScripts-2024-11-05-1.zip
+    - Moved to the new, shorter repo
 - TheAstroShedScripts-2024-10-29.zip
     - Added the AppendPrefixSuffix script
 - TheAstroShedScripts-2024-06-29.zip
