@@ -16,8 +16,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.1.15
-releaseNotes="Moving to easier repository, new build script"
+release=v0.1.16
+releaseNotes="delete some unnecessary debug console messages"
 #
 # <<<<<<<
 

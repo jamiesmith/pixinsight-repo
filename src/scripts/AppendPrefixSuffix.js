@@ -205,7 +205,6 @@ function main()
     {
         // load parameters
         //
-        console.writeln("It's a view target");
         AppendPrefixSuffixParameters.load();
         renameView(Parameters.targetView, AppendPrefixSuffixParameters.prefix, AppendPrefixSuffixParameters.suffix);
 
@@ -218,7 +217,6 @@ function main()
     {
         // load the parameters from the instance
         //
-        console.writeln("It's a global target");
         AppendPrefixSuffixParameters.load();
     }
 

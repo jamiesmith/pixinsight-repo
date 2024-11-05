@@ -309,8 +309,6 @@ function main()
         {
             applyGlobally();
         }
-        console.writeln("It's a view target");
-
         return;
     }
 
