@@ -7,6 +7,10 @@ To use, add this to PixInsight's repository manager:
 
 Note: Don't omit the ending `/` or you will likely get a `400` or `404` return code
 
+## Blog Post
+To see some detailed instructions for how to use these scripts, see the related blog post, 
+[Image processing: PixInsight scripts from theAstroShed](https://www.theastroshed.com/image-processing-with-pixinsight-scripts-from-theastroshed/)
+
 ## theAstroShed's Process Icons
 
 If you want to see (or use) the same process icons that I do, check out 
