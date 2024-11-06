@@ -12,7 +12,7 @@ Note: Don't omit the ending `/` or you will likely get a `400` or `404` return c
 If you want to see (or use) the same process icons that I do, check out 
 [theAstroShed's PixInsight process icons](https://github.com/jamiesmith/pixinsight-icons). 
 If you just want a small set to see how I use these scripts you can download
-this [example set](https://raw.githubusercontent.com/jamiesmith/pixinsight-icons/refs/heads/main/theAstroShedScripts.xpsm) from the above repo (right click and "save as")
+this [example set](https://raw.githubusercontent.com/jamiesmith/pixinsight-icons/refs/heads/main/theAstroShedScripts.xpsm) from the above repo (right click and "save as" or "download linked file")
 
 If you want to see some of my (few) images, check out my page on
 [Astrobin](http://www.astrobin.com/users/jamiesmithnc/), and if you
