@@ -52,8 +52,7 @@ var FixTiledZoomParameters = {
             {
                 FixTiledZoomParameters.zoom = getOptimalZoom();
             }
-        }
-        
+        }        
     }
 }
 
@@ -285,7 +284,6 @@ function FixTiledZoomDialog()
     // this.autoZoomSizer.addUnscaledSpacing( labelWidth1 + this.logicalPixelsToPhysical( 4 ) );
     this.autoZoomSizer.add( this.autoZoomCheckBox );
     this.autoZoomSizer.addStretch();
-
 
     // layout the dialog
     //

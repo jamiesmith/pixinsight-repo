@@ -16,8 +16,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.1.17
-releaseNotes="delete some unnecessary debug console messages"
+release=v0.1.18
+releaseNotes="Add a new script to clone an image with a defined suffix"
 #
 # <<<<<<<
 
