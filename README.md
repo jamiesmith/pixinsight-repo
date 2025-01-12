@@ -65,8 +65,32 @@ change. You can have multiple different instances to match your workflow.
 The bonus is that using consistent names make later steps (saved pixelmath
 scripts) easier, because the files always have the same name.
 
+### Clone With Suffix
+
+I have found that, when processing, I tend to make clones along the way so I can
+get back to a certain point, or if I need something that hasn't been tweaked yet
+(maybe for continuum subtraction, later in the process.
+
+Yeah, you can easily clone via drag and drop or via PixelMath, but then you've
+just got some random Foo_clone or Image33 and if you go the PixelMath route you
+lose the astrometric solution, and if you do the D&D clone, I'd want to rename
+it. So I wrote a script for it.
+
+It lets you:
+- Specify what you want appended to the end of the view name
+- Drag & drop onto a view to clone
+- copy the astrometric solution
+
+Say you've got `R`, `G`, and `B` images, and you want to save them off as
+`R_linear` , `B_linear`, and `C_linear` before you do stretch the main
+files. Create an instance of the script with a suffix of linear, drag it onto
+your workspace, then drag it onto each of the RGB. Laziness for the win. Save it
+in your process icons to reuse
+
 ## Release History
 
+- TheAstroShedScripts-2025-01-12.zip
+    - Added a script to clone a view and append a suffix (also copies the astrometric solution if available)
 - TheAstroShedScripts-2024-11-05-1.zip
     - Moved to the new, shorter repo
 - TheAstroShedScripts-2024-10-29.zip
