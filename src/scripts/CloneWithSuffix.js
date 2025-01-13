@@ -46,47 +46,47 @@ var CloneWithSuffixParameters = {
     }
 }
 
-function cloneView(viewToClone, cloneName)
+function cloneView(sourceView, newViewId)
 {
-    var P = new PixelMath;
-    P.expression = "$T";
-    P.expression1 = "";
-    P.expression2 = "";
-    P.expression3 = "";
-    P.useSingleExpression = true;
-    P.symbols = "";
-    P.clearImageCacheAndExit = false;
-    P.cacheGeneratedImages = false;
-    P.generateOutput = true;
-    P.singleThreaded = false;
-    P.optimization = true;
-    P.use64BitWorkingImage = false;
-    P.rescale = false;
-    P.rescaleLower = 0;
-    P.rescaleUpper = 1;
-    P.truncate = true;
-    P.truncateLower = 0;
-    P.truncateUpper = 1;
-    P.createNewImage = true;
-    P.showNewImage = true;
-    P.newImageId = cloneName;
-    P.newImageWidth = 0;
-    P.newImageHeight = 0;
-    P.newImageAlpha = false;
-    P.newImageColorSpace = PixelMath.prototype.SameAsTarget;
-    P.newImageSampleFormat = PixelMath.prototype.SameAsTarget;
-
-    P.executeOn(viewToClone);
-    return View.viewById(cloneName);
-}
-
-function keywordValue( window, name )
-{
-   let keywords = window.keywords;
-   for ( let i = 0; i < keywords.length; ++i )
-      if ( keywords[i].name == name )
-         return keywords[i].strippedValue;
-   return null;
+    // Based on the cloneView() found in CosmicPhoton's 'StarReductionEngine'
+    //
+    let inIW = sourceView.window;
+    let w = Math.max(1, sourceView.image.width);
+    let h = Math.max(1, sourceView.image.height);
+    let isColor = sourceView.image.isColor;
+    let bps = sourceView.image.bitsPerSample;
+    let isFS = sourceView.image.isReal;
+    let channelCount = isColor ? 3 : 1;
+    let outIW = new ImageWindow(w, h, channelCount, bps, isFS, isColor, newViewId);
+    let newView = outIW.mainView;
+    newView.beginProcess(UndoFlag_NoSwapFile);
+    newView.image.apply(sourceView.image);
+    newView.endProcess();
+    outIW.maskEnabled = sourceView.window.maskEnabled;
+    outIW.maskInverted = sourceView.window.maskInverted;
+    outIW.maskVisible = sourceView.window.maskVisible;
+    outIW.mask = sourceView.window.mask;
+    
+    // Copy FITS headers and Properties
+    //
+    newView.window.mainView.window.keywords = sourceView.window.mainView.window.keywords;
+    // There might be an easier way to do this, but I can't find it
+    //
+    for ( let i = 0; i < sourceView.properties.length; ++i )
+    {
+        let propertyName = sourceView.properties[i];
+        try
+        {
+            // Some properties are reserved (MAD, median), ignore those failures
+            //
+            newView.setPropertyValue(propertyName, sourceView.propertyValue(propertyName));            
+        }
+        catch (err) 
+        {
+        }
+    }
+    newView.window.show();
+    return newView;
 }
 
 function copyAstrometricSolution(source, target)
@@ -114,8 +114,8 @@ function CloneWithSuffixDialog()
 
     // set the minimum width of the dialog
     //
-    this.scaledMinWidth = 300;
-    this.scaledMaxWidth = 300;
+    this.scaledMinWidth = 400;
+    this.scaledMaxWidth = 400;
 
     // set the minimum height of the dialog
     //
@@ -125,11 +125,11 @@ function CloneWithSuffixDialog()
     // create a title area
     //
     this.title = new TextBox(this);
-    this.title.text = "<b>Clone an image with the supplied Suffix Appended to the instance ID, with an underscore as the delimiter</b>" +
+    this.title.text = "<b>Clone an image, appending <i>_<suffix></i> to the ID</b>" +
         "<br>For example, if the suffix is 'linear', and the image is 'Ha', the new image will be named <b>Ha_linear</b>" +
         "<br><br><b>Usage:</b>" +
-        "<br>Drag a new instance onto your workspace, then drop that Script Process Icon on a single image to clone with suffix" ;
-        "<br>(This is intended to be used in a set of saved process icons)" +
+        "<br>This is intended to be used in a set of saved process icons" +
+        "<br>Drag a new instance onto your workspace, then drop that Script Process Icon on a single image to clone with suffix" +
         "<br>" +
         "Note that if the source has an astrometric solution it will be copied as well";
     
@@ -208,8 +208,10 @@ function main()
         CloneWithSuffixParameters.load();
         var clonedView = cloneView(Parameters.targetView, Parameters.targetView.id + "_" + CloneWithSuffixParameters.suffix);
         console.warningln("clone View: " + clonedView.id);
-        copyAstrometricSolution(Parameters.targetView, clonedView);
         
+        // Leaving this for posterity but copying the properties takes care of it
+        //
+        // copyAstrometricSolution(Parameters.targetView, clonedView);        
         return;
     }
 

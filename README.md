@@ -72,9 +72,9 @@ get back to a certain point, or if I need something that hasn't been tweaked yet
 (maybe for continuum subtraction, later in the process.
 
 Yeah, you can easily clone via drag and drop or via PixelMath, but then you've
-just got some random Foo_clone or Image33 and if you go the PixelMath route you
-lose the astrometric solution, and if you do the D&D clone, I'd want to rename
-it. So I wrote a script for it.
+just got some random Foo_clone or Image33. If you go the PixelMath route you
+lose the astrometric solution, and if you do the D&D clone, you'd probably rename
+it. So I wrote a script to take care of it.
 
 It lets you:
 - Specify what you want appended to the end of the view name
@@ -89,6 +89,9 @@ in your process icons to reuse
 
 ## Release History
 
+- TheAstroShedScripts-2025-01-13.zip
+    - Don't use pixelmath to clone, just cloneView
+    - Also copy properties (which also includes the astrometric solution)
 - TheAstroShedScripts-2025-01-12.zip
     - Added a script to clone a view and append a suffix (also copies the astrometric solution if available)
 - TheAstroShedScripts-2024-11-05-1.zip
