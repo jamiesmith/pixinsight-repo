@@ -230,14 +230,13 @@ function SmartRenameViewDialog()
     this.prefixSizer.spacing = 4;
     this.prefixSizer.add( this.prefixLabel );
     this.prefixSizer.addSpacing( 8 );
-    this.prefixSizer.add( this.prefixLabel );
     this.prefixSizer.add( this.prefixEdit );
     this.prefixSizer.addStretch();
 
     // Set up the suffix field
     //
     this.suffixLabel = new Label (this);
-    this.suffixLabel.text = "suffix:";
+    this.suffixLabel.text = "Suffix:";
     this.suffixLabel.textAlignment = TextAlign_Right|TextAlign_VertCenter;
 
     this.suffixEdit = new Edit( this );
@@ -253,7 +252,6 @@ function SmartRenameViewDialog()
     this.suffixSizer.spacing = 4;
     this.suffixSizer.add( this.suffixLabel );
     this.suffixSizer.addSpacing( 8 );
-    this.suffixSizer.add( this.suffixLabel );
     this.suffixSizer.add( this.suffixEdit );
     this.suffixSizer.addStretch();
 

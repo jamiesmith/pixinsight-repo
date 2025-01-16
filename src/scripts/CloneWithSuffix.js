@@ -31,10 +31,12 @@
 var CloneWithSuffixParameters = {
     targetView: undefined,
     suffix: "",
+    iconizeAfterClone: false,
 
     // stores the current parameters values into the script instance
     save: function() {
         Parameters.set("suffix", CloneWithSuffixParameters.suffix);
+        Parameters.set("iconizeAfterClone", CloneWithSuffixParameters.iconizeAfterClone);        
     },
 
     // loads the script instance parameters
@@ -43,6 +45,10 @@ var CloneWithSuffixParameters = {
         {
             CloneWithSuffixParameters.suffix = Parameters.getString("suffix")
         }
+        if (Parameters.has("iconizeAfterClone"))
+        {
+            CloneWithSuffixParameters.iconizeAfterClone = Parameters.getBoolean("iconizeAfterClone");
+        }        
     }
 }
 
@@ -171,11 +177,20 @@ function CloneWithSuffixDialog()
         CloneWithSuffixParameters.suffix = this.text;
     };
 
+
+    this.iconizeCloneCheckBox = new CheckBox( this );
+    this.iconizeCloneCheckBox.text = "Iconize Clone";
+    this.iconizeCloneCheckBox.toolTip = "<p>Check this to iconize the resulting clone</p>";
+    this.iconizeCloneCheckBox.checked = CloneWithSuffixParameters.iconizeClone == true;
+    this.iconizeCloneCheckBox.onCheck = function( checked )
+    {
+        CloneWithSuffixParameters.iconizeAfterClone = checked;
+    };
+
     this.suffixSizer = new HorizontalSizer;
     this.suffixSizer.spacing = 4;
     this.suffixSizer.add( this.suffixLabel );
     this.suffixSizer.addSpacing( 8 );
-    this.suffixSizer.add( this.suffixLabel );
     this.suffixSizer.add( this.suffixEdit );
     this.suffixSizer.addStretch();
 
@@ -186,6 +201,8 @@ function CloneWithSuffixDialog()
     this.sizer.add(this.title);
     this.sizer.addSpacing(8);
     this.sizer.add(this.suffixSizer);
+    this.sizer.addSpacing(8);
+    this.sizer.add( this.iconizeCloneCheckBox );
     this.sizer.addSpacing(8);
     this.sizer.add(this.buttonSizer);
     this.sizer.addStretch();
@@ -208,6 +225,11 @@ function main()
         CloneWithSuffixParameters.load();
         var clonedView = cloneView(Parameters.targetView, Parameters.targetView.id + "_" + CloneWithSuffixParameters.suffix);
         console.warningln("clone View: " + clonedView.id);
+        
+        if (CloneWithSuffixParameters.iconizeAfterClone)
+        {
+            clonedView.window.iconize();
+        }
         
         // Leaving this for posterity but copying the properties takes care of it
         //

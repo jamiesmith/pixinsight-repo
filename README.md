@@ -87,8 +87,22 @@ files. Create an instance of the script with a suffix of linear, drag it onto
 your workspace, then drag it onto each of the RGB. Laziness for the win. Save it
 in your process icons to reuse
 
+### Iconize Matching Child Image(s)
+If a child view exists with a matching suffix, iconize it (A child image is defined as something that has the Parent view's ID as a prefix)
+
+**Example**:
+If the target image is **Ha** and the suffix is **linear** and there's an **Ha_linear** view, iconize it.
+
+Usage:
+- **As a saved process Icon**: Drop the icon on a visible **parent** image to iconize related child
+- **Applied to Active Image (square)**: Iconize related child of the target with the specified suffix
+- **Applied Globally (circle)**: Iterate through all visible instances and iconizes each matching child
+
 ## Release History
 
+- TheAstroShedScripts-2025-01-16.zip
+    - Added a new script to iconize matching child/clone images, Expected use is in ProcessContainers, but the "apply global" can let it work ad hoc
+    - Added an "Iconize" checkbox to the CloneWithSuffix script
 - TheAstroShedScripts-2025-01-13.zip
     - Don't use pixelmath to clone, just cloneView
     - Also copy properties (which also includes the astrometric solution)

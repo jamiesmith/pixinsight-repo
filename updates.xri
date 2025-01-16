@@ -4,16 +4,16 @@
       <p>This is the repository for PixInsight scripts by theastroshed.com, featuring &quot;Fixed Tiled Zoom&quot; and &quot;Smart Rename View&quot;.</p>
    </description>
    <platform os="all" arch="noarch" version="1.8.8:1.9.9">
-      <package fileName="TheAstroShedScripts-2025-01-13.zip" sha1="e55e2a0833130bf54b6b4947fd35d8d59529ae0e" type="script" releaseDate="20250113">
+      <package fileName="TheAstroShedScripts-2025-01-16.zip" sha1="5cdbb3d82d3f2a61855189ae88e3fb2446eed769" type="script" releaseDate="20250116">
          <title>
-                The Astroshed Plugins version 2025-01-13 
+                The Astroshed Plugins version 2025-01-16 
             </title>
          <description>
             <p>
-                    2025-01-13: Add a new script to clone an image with a defined suffix
+                    2025-01-16: Added an iconize option to the clone script, and added a new IconizeChild script
                 </p>
          </description>
       </package>
    </platform>
 </xri>
-<Signature developerId="Jamie Smith" timestamp="2025-01-13T19:16:26.783Z" encoding="Base64">crTRDtzBY5W6HS7qHqoJcICG1MX0K5fuAbltBOtsyy9H6hdLbhF6QP214ODu2XwIBuAQf797btd3Y4Z+icRdBg==</Signature>
+<Signature developerId="Jamie Smith" timestamp="2025-01-16T16:57:32.585Z" encoding="Base64">H+FXJhTbxDWIZ3W6SdYm3yuJ+Y7twhD6WlHzeALGJxKhxsyYwYH2v/QRMKta9e3kLnrunhTmFBHu6/EQBJ9oCw==</Signature>

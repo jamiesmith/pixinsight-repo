@@ -17,7 +17,7 @@ cd "${buildDir}"
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
 release=v0.2.0
-releaseNotes="Add a new script to clone an image with a defined suffix"
+releaseNotes="Added an iconize option to the clone script, and added a new IconizeChild script"
 #
 # <<<<<<<
 
