@@ -18,8 +18,8 @@
    this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#feature-id    IconizeCloneWithSuffix_<VERSION> : TheAstroShed > Clone an Image with the same name plus a suffix
-#feature-info  Clone an image with the same name plus a suffix
+#feature-id    IconizeCloneWithSuffix_<VERSION> : TheAstroShed > Iconize a child image
+#feature-info  If a child view exists with a matching suffix, iconize it (A child image is defined as something that has the Parent views ID as a prefix)
 
 #include <pjsr/TextAlign.jsh>
 #include <pjsr/Sizer.jsh>          // needed to instantiate the VerticalSizer and HorizontalSizer objects
