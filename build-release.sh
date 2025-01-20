@@ -16,8 +16,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.2.1
-releaseNotes="Added an iconize option to the clone script, and added a new IconizeChild script"
+release=v0.2.3
+releaseNotes="Standardize the scripts regarding delimiters"
 #
 # <<<<<<<
 

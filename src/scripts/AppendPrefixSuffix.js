@@ -19,7 +19,7 @@
  */
 
 #feature-id    AppendPrefixSuffix_<VERSION> : TheAstroShed > Append a prefix or suffix to an image identifier
-#feature-info  Add a prefix or suffix to an image identifier, delimited by an underscore.
+#feature-info  Add a prefix or suffix to an image identifier.
 
 #include <pjsr/TextAlign.jsh>
 #include <pjsr/Sizer.jsh>          // needed to instantiate the VerticalSizer and HorizontalSizer objects
@@ -69,12 +69,12 @@ function renameView(view, prefix = "", suffix = "")
     
     if (prefix !== "")
     {
-        newId = prefix + "_" + newId;
+        newId = prefix + newId;
     }
 
     if (suffix !== "")
     {
-        newId = newId + "_" + suffix;
+        newId = newId + suffix;
     }
     
     view.id = newId;
@@ -104,7 +104,7 @@ function AppendPrefixSuffixDialog()
     // create a title area
     //
     this.title = new TextBox(this);
-    this.title.text = "<b>Append Prefix and/or Suffix</b><br><br>Append a prefix or suffix (delimited by an underscore) to the instance ID" +
+    this.title.text = "<b>Append Prefix and/or Suffix</b><br><br>Append a prefix or suffix to the instance ID" +
                     "<br><br><b>Usage:</b>" +
     "<br>Drag a new instance onto your workspace, then drop that Script Process Icon on a single image to rename (This is intended to be used in a set of saved process icons)" ;
     this.title.readOnly = true;

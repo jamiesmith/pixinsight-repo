@@ -62,7 +62,7 @@ function iconizeView(viewIdToIconize)
 
 function executeOperation(view)
 {
-    let cloneViewId = view.id + "_" + IconizeCloneWithSuffixParameters.suffix;
+    let cloneViewId = view.id + IconizeCloneWithSuffixParameters.suffix;
     console.warningln("Parent View: " + view.id + " child view:" + cloneViewId);
     iconizeView(cloneViewId);
 }
@@ -93,12 +93,14 @@ function IconizeCloneWithSuffixDialog()
     this.title = new TextBox(this);
     
     
-    this.title.text = "<b>Iconize Matching Child Image(s)</b>" +
-        "<br>If a child view exists with a matching suffix, iconize it " +
-        "(A child image is defined as something that has the Parent view's ID as a prefix)" +
+    this.title.text = "<b>Iconize Matching Child or Parent Image(s)</b>" +
+        "<br>If a suffix is supplied and a child view exists with the matching suffix, iconize it " +
+        "If the suffix is empty, iconize the target" +
+        "<br>(A child image is defined as something that has the Parent view's ID as a prefix)" +
         "<br>" +
         "<br><b>Example:</b>" +
-        "<br>If the target image is <b>Ha</b> and the suffix is <b>linear</b> and there's an <b>Ha_linear</b> view, iconize it." +
+        "<br>If the target image is <b>Ha</b> and the suffix is <b>_linear</b> and there's an <b>Ha_linear</b> view, iconize it." +
+        "<br>If the suffix is empty the target view itself will be iconized" +
         "<br><br><b>Usage:</b>" +
         "<br><b>- As a saved process Icon:</b> Drop the icon on a visible <b>parent</b> image to iconize related child" +
         "<br>" +
@@ -108,8 +110,8 @@ function IconizeCloneWithSuffixDialog()
     
     this.title.readOnly = true;
     this.title.backroundColor = 0x333333ff;
-    this.title.minHeight = 250;
-    this.title.maxHeight = 250;
+    this.title.minHeight = 300;
+    this.title.maxHeight = 300;
 
     this.applyButton = new ToolButton( this );
     this.applyButton.icon = this.scaledResource( ":/process-interface/apply.png" );

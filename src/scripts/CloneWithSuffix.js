@@ -131,8 +131,8 @@ function CloneWithSuffixDialog()
     // create a title area
     //
     this.title = new TextBox(this);
-    this.title.text = "<b>Clone an image, appending <i>_<suffix></i> to the ID</b>" +
-        "<br>For example, if the suffix is 'linear', and the image is 'Ha', the new image will be named <b>Ha_linear</b>" +
+    this.title.text = "<b>Clone an image, appending <i><suffix></i> to the ID</b>" +
+        "<br>For example, if the suffix is '_linear', and the image is 'Ha', the new image will be named <b>Ha_linear</b>" +
         "<br><br><b>Usage:</b>" +
         "<br>This is intended to be used in a set of saved process icons" +
         "<br>Drag a new instance onto your workspace, then drop that Script Process Icon on a single image to clone with suffix" +
@@ -223,7 +223,7 @@ function main()
         // load parameters
         //
         CloneWithSuffixParameters.load();
-        var clonedView = cloneView(Parameters.targetView, Parameters.targetView.id + "_" + CloneWithSuffixParameters.suffix);
+        var clonedView = cloneView(Parameters.targetView, Parameters.targetView.id + CloneWithSuffixParameters.suffix);
         console.warningln("clone View: " + clonedView.id);
         
         if (CloneWithSuffixParameters.iconizeAfterClone)
