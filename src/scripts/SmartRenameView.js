@@ -84,12 +84,11 @@ function renameView(view, prefix = "", suffix = "")
 {
     var filterName = keywordValue(view.window, "FILTER");
     // Only make the change if the filter name is not blank
-    // AND the filter name isn't in the view already
+    // AND the view ID doesnt start with the filter name
     //
-    if (filterName && filterName != "")
-        
+    if (filterName && filterName != "")        
     {
-        if (view.id.indexOf(filterName) < 0)
+        if (view.id.indexOf(filterName) != 0)
         {
             let undoFlag = UndoFlag_DefaultMode;
             view.id = prefix + filterName + suffix;
@@ -97,7 +96,7 @@ function renameView(view, prefix = "", suffix = "")
         else
         {
             console.show();
-            console.warningln("View ID [" + view.id + "] already contains filter name [" + filterName + "]");
+            console.warningln("View ID [" + view.id + "] already starts with filter name [" + filterName + "]");
         }
     }
     else
