@@ -181,7 +181,7 @@ function CloneWithSuffixDialog()
     this.iconizeCloneCheckBox = new CheckBox( this );
     this.iconizeCloneCheckBox.text = "Iconize Clone";
     this.iconizeCloneCheckBox.toolTip = "<p>Check this to iconize the resulting clone</p>";
-    this.iconizeCloneCheckBox.checked = CloneWithSuffixParameters.iconizeClone == true;
+    this.iconizeCloneCheckBox.checked = CloneWithSuffixParameters.iconizeAfterClone == true;
     this.iconizeCloneCheckBox.onCheck = function( checked )
     {
         CloneWithSuffixParameters.iconizeAfterClone = checked;

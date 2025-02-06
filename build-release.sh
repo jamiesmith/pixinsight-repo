@@ -16,8 +16,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.2.3
-releaseNotes="Standardize the scripts regarding delimiters"
+release=v0.2.4
+releaseNotes="Make it so views that already contain the filter name don't get overwritten"
 #
 # <<<<<<<
 

@@ -83,11 +83,22 @@ function keywordValue( window, name )
 function renameView(view, prefix = "", suffix = "") 
 {
     var filterName = keywordValue(view.window, "FILTER");
-    
+    // Only make the change if the filter name is not blank
+    // AND the filter name isn't in the view already
+    //
     if (filterName && filterName != "")
+        
     {
-        let undoFlag = UndoFlag_DefaultMode;
-        view.id = prefix + filterName + suffix;
+        if (view.id.indexOf(filterName) < 0)
+        {
+            let undoFlag = UndoFlag_DefaultMode;
+            view.id = prefix + filterName + suffix;
+        }
+        else
+        {
+            console.show();
+            console.warningln("View ID [" + view.id + "] already contains filter name [" + filterName + "]");
+        }
     }
     else
     {
