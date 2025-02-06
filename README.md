@@ -98,8 +98,15 @@ Usage:
 - **Applied to Active Image (square)**: Iconize related child of the target with the specified suffix
 - **Applied Globally (circle)**: Iterate through all visible instances and iconizes each matching child
 
+### Clone and Resize target image
+Clone an image, and resample so the longest side matches the target. 
+The cloned view will get a suffix of `_XXXXpx`
+Note: Images will not get scaled up
+
 ## Release History
 
+- TheAstroShedScripts-2025-02-06-1.zip
+    - Added a new "Clone and Resize" script, to resample images
 - TheAstroShedScripts-2025-01-16.zip
     - Added a new script to iconize matching child/clone images, Expected use is in ProcessContainers, but the "apply global" can let it work ad hoc
     - Added an "Iconize" checkbox to the CloneWithSuffix script

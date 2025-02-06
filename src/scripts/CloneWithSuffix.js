@@ -26,6 +26,7 @@
 #include <pjsr/UndoFlag.jsh>
 #include <pjsr/StdIcon.jsh>
 #include <pjsr/StdButton.jsh>
+#include "theAstroShed-utils.js"
 
 // define a global variable containing script's parameters
 var CloneWithSuffixParameters = {
@@ -49,61 +50,6 @@ var CloneWithSuffixParameters = {
         {
             CloneWithSuffixParameters.iconizeAfterClone = Parameters.getBoolean("iconizeAfterClone");
         }        
-    }
-}
-
-function cloneView(sourceView, newViewId)
-{
-    // Based on the cloneView() found in CosmicPhoton's 'StarReductionEngine'
-    //
-    let inIW = sourceView.window;
-    let w = Math.max(1, sourceView.image.width);
-    let h = Math.max(1, sourceView.image.height);
-    let isColor = sourceView.image.isColor;
-    let bps = sourceView.image.bitsPerSample;
-    let isFS = sourceView.image.isReal;
-    let channelCount = isColor ? 3 : 1;
-    let outIW = new ImageWindow(w, h, channelCount, bps, isFS, isColor, newViewId);
-    let newView = outIW.mainView;
-    newView.beginProcess(UndoFlag_NoSwapFile);
-    newView.image.apply(sourceView.image);
-    newView.endProcess();
-    outIW.maskEnabled = sourceView.window.maskEnabled;
-    outIW.maskInverted = sourceView.window.maskInverted;
-    outIW.maskVisible = sourceView.window.maskVisible;
-    outIW.mask = sourceView.window.mask;
-    
-    // Copy FITS headers and Properties
-    //
-    newView.window.mainView.window.keywords = sourceView.window.mainView.window.keywords;
-    // There might be an easier way to do this, but I can't find it
-    //
-    for ( let i = 0; i < sourceView.properties.length; ++i )
-    {
-        let propertyName = sourceView.properties[i];
-        try
-        {
-            // Some properties are reserved (MAD, median), ignore those failures
-            //
-            newView.setPropertyValue(propertyName, sourceView.propertyValue(propertyName));            
-        }
-        catch (err) 
-        {
-        }
-    }
-    newView.window.show();
-    return newView;
-}
-
-function copyAstrometricSolution(source, target)
-{
-    try 
-    {
-        target.window.copyAstrometricSolution( source.window );
-    }
-    catch (err) 
-    {
-        console.warningln(source.id + " doesn't seem to have an astrometric solution")
     }
 }
 

@@ -16,8 +16,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.2.4
-releaseNotes="Make it so views that already contain the filter name don't get overwritten"
+release=v0.2.5
+releaseNotes="Added a new resample clone utility"
 #
 # <<<<<<<
 

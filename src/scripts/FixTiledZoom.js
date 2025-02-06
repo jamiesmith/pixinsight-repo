@@ -27,6 +27,7 @@
 #include <pjsr/StdIcon.jsh>
 #include <pjsr/StdButton.jsh>
 #include "FixTiledZoom-stf.js"
+#include "theAstroShed-utils.js"
 
 // define a global variable containing script's parameters
 var FixTiledZoomParameters = {
@@ -54,26 +55,6 @@ var FixTiledZoomParameters = {
             }
         }        
     }
-}
-
-function getOptimalZoomForWindow(window)
-{
-    var widthRatio = Math.round(window.mainView.image.bounds.x1 / window.visibleViewportRect.x1 );
-    var heightRatio = Math.round(window.mainView.image.bounds.y1 / window.visibleViewportRect.y1 );
-    
-    var zoom = (widthRatio > heightRatio) ? widthRatio : heightRatio;
-
-    console.writeln(format("WZ - %-8s image [%d,%d] rect [%d,%d] WR [%d] HR [%d] zoom [%d]", 
-            window.mainView.id,
-            window.mainView.image.bounds.x1,
-            window.mainView.image.bounds.y1,
-            window.visibleViewportRect.x1,
-            window.visibleViewportRect.y1,
-            widthRatio, 
-            heightRatio, 
-            zoom));
-            
-    return zoom;    
 }
 
 function getOptimalZoom()
