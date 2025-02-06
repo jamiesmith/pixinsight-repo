@@ -16,8 +16,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.2.6
-releaseNotes="Fixed a screw up with the name pattern match"
+release=v0.2.7
+releaseNotes="Fixed a screw up with a variable name"
 #
 # <<<<<<<
 

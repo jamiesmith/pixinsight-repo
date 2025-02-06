@@ -54,7 +54,7 @@ function executeOperation(view, targetMaxSideSize)
     let cloneViewId = view.id + "_" + ResampledCloneParameters.maxSideLengthInPixels + "px";
  
     let actualMaxSideSize = view.image.bounds.x1;
-    if (view.image.bounds.y1 > maxSide)
+    if (view.image.bounds.y1 > targetMaxSideSize)
     {
         actualMaxSideSize = view.image.bounds.y1;
     }
