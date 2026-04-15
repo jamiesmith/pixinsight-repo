@@ -35,7 +35,7 @@ function cloneView(sourceView, newViewId)
     outIW.maskInverted = sourceView.window.maskInverted;
     outIW.maskVisible = sourceView.window.maskVisible;
     outIW.mask = sourceView.window.mask;
-    
+
     // Copy FITS headers and Properties
     //
     newView.window.mainView.window.keywords = sourceView.window.mainView.window.keywords;
@@ -48,9 +48,9 @@ function cloneView(sourceView, newViewId)
         {
             // Some properties are reserved (MAD, median), ignore those failures
             //
-            newView.setPropertyValue(propertyName, sourceView.propertyValue(propertyName));            
+            newView.setPropertyValue(propertyName, sourceView.propertyValue(propertyName));
         }
-        catch (err) 
+        catch (err)
         {
         }
     }
@@ -60,11 +60,11 @@ function cloneView(sourceView, newViewId)
 
 function copyAstrometricSolution(source, target)
 {
-    try 
+    try
     {
         target.window.copyAstrometricSolution( source.window );
     }
-    catch (err) 
+    catch (err)
     {
         console.warningln(source.id + " doesn't seem to have an astrometric solution")
     }
@@ -96,20 +96,22 @@ function resampleView(view, ratio)
 
 function getOptimalZoomForWindow(window)
 {
-    var widthRatio = Math.round(window.mainView.image.bounds.x1 / window.visibleViewportRect.x1 );
-    var heightRatio = Math.round(window.mainView.image.bounds.y1 / window.visibleViewportRect.y1 );
-    
+    var widthRatio = Math.ceil(window.mainView.image.bounds.x1 / (window.visibleViewportRect.x1 - 10) );
+    var heightRatio = Math.ceil(window.mainView.image.bounds.y1 / (window.visibleViewportRect.y1 - 10) );
+
     var zoom = (widthRatio > heightRatio) ? widthRatio : heightRatio;
 
-    console.writeln(format("WZ - %-8s image [%d,%d] rect [%d,%d] WR [%d] HR [%d] zoom [%d]", 
+    console.writeln(format("WZ - %-8s image [%d,%d] rect [%d,%d] WR [%d] HR [%d] RAW-W [%f] RAW-H [%f] zoom [%d]",
             window.mainView.id,
             window.mainView.image.bounds.x1,
             window.mainView.image.bounds.y1,
             window.visibleViewportRect.x1,
             window.visibleViewportRect.y1,
-            widthRatio, 
-            heightRatio, 
+            widthRatio,
+            heightRatio,
+            window.mainView.image.bounds.x1 / window.visibleViewportRect.x1,
+            window.mainView.image.bounds.y1 / window.visibleViewportRect.y1,
             zoom));
-            
-    return zoom;    
+
+    return zoom;
 }
