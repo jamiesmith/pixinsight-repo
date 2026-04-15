@@ -18,8 +18,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.3.0
-releaseNotes="Trying to upgrade to the new v8 runtime"
+release=v0.3.1
+releaseNotes="Need them both to work"
 #
 # <<<<<<<
 

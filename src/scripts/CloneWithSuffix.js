@@ -18,11 +18,11 @@
    this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#engine v8
-#feature-id    CloneWithSuffix_<VERSION> : TheAstroShed > Clone an Image with the same name plus a suffix
+#feature-id    CloneWithSuffix_v0.2.7 : TheAstroShed > Clone an Image with the same name plus a suffix
 #feature-info  Clone an image with the same name plus a suffix
 
 #include <pjsr/TextAlign.jsh>
+#include <pjsr/Sizer.jsh>          // needed to instantiate the VerticalSizer and HorizontalSizer objects
 #include <pjsr/UndoFlag.jsh>
 #include <pjsr/StdIcon.jsh>
 #include <pjsr/StdButton.jsh>
@@ -53,100 +53,108 @@ var CloneWithSuffixParameters = {
     }
 }
 
-class CloneWithSuffixDialog extends Dialog
+/*
+ * Construct the script dialog interface
+ */
+function CloneWithSuffixDialog() 
 {
-    constructor()
-    {
-        super();
-        // let the dialog to be resizable by dragging its borders
-      
-        this.userResizable = false;
+    this.__base__ = Dialog;
+    this.__base__();
 
-        // set the minimum width of the dialog
-        //
-        this.scaledMinWidth = 550;
-        this.scaledMaxWidth = 550;
+    // let the dialog to be resizable by dragging its borders
+    this.userResizable = false;
 
-        // create a title area
-        //
-        this.title = new TextBox(this);
-        this.title.text = "<b>Clone an image, appending <i><suffix></i> to the ID</b>" +
-            "<br>For example, if the suffix is '_linear', and the image is 'Ha', the new image will be named <b>Ha_linear</b>" +
-            "<br><br><b>Usage:</b>" +
-            "<br>&nbsp;&nbsp;&nbsp;This is intended to be used in a set of saved process icons" +
-            "<br><br>Drag a new instance onto your workspace, then drop that Script Process Icon on a single image to clone with suffix" +
-            "<br><br>" +
-            "Note that if the source has an astrometric solution it will be copied as well";
+    // set the minimum width of the dialog
+    //
+    this.scaledMinWidth = 400;
+    this.scaledMaxWidth = 400;
+
+    // set the minimum height of the dialog
+    //
+    this.scaledMinheight = 260;
+    this.scaledMaxheight = 260;
+
+    // create a title area
+    //
+    this.title = new TextBox(this);
+    this.title.text = "<b>Clone an image, appending <i><suffix></i> to the ID</b>" +
+        "<br>For example, if the suffix is '_linear', and the image is 'Ha', the new image will be named <b>Ha_linear</b>" +
+        "<br><br><b>Usage:</b>" +
+        "<br>This is intended to be used in a set of saved process icons" +
+        "<br>Drag a new instance onto your workspace, then drop that Script Process Icon on a single image to clone with suffix" +
+        "<br>" +
+        "Note that if the source has an astrometric solution it will be copied as well";
     
-        this.title.readOnly = true;
-        this.title.backroundColor = 0x333333ff;
-        this.title.minHeight = 220;
-        this.title.maxHeight = 220;
+    this.title.readOnly = true;
+    this.title.backroundColor = 0x333333ff;
+    this.title.minHeight = 170;
+    this.title.maxHeight = 170;
 
-        // Add create instance button
-        //
-        this.newInstanceButton = new ToolButton( this );
-        this.newInstanceButton.icon = this.scaledResource( ":/process-interface/new-instance.png" );
-        this.newInstanceButton.setScaledFixedSize( 18, 18 );
-        this.newInstanceButton.toolTip = "Save Instance";
-        this.newInstanceButton.onMousePress = () => {
-            // stores the parameters
-            CloneWithSuffixParameters.save();
-            // create the script instance
-            this.newInstance();
-        };
+    // Add create instance button
+    //
+    this.newInstanceButton = new ToolButton( this );
+    this.newInstanceButton.icon = this.scaledResource( ":/process-interface/new-instance.png" );
+    this.newInstanceButton.setScaledFixedSize( 24, 24 );
+    this.newInstanceButton.toolTip = "Save Instance";
+    this.newInstanceButton.onMousePress = () => {
+        // stores the parameters
+        CloneWithSuffixParameters.save();
+        // create the script instance
+        this.newInstance();
+    };
 
-        this.buttonSizer = new HorizontalSizer;
-        this.buttonSizer.margin = 8;
-        this.buttonSizer.add(this.newInstanceButton)
-        this.buttonSizer.addStretch();
+    this.buttonSizer = new HorizontalSizer;
+    this.buttonSizer.margin = 8;
+    this.buttonSizer.add(this.newInstanceButton)
+    this.buttonSizer.addStretch();
 
-        // Set up the suffix field
-        //
-        this.suffixLabel = new Label (this);
-        this.suffixLabel.text = "Suffix:";
-        this.suffixLabel.textAlignment = TextAlign_Right|TextAlign_VertCenter;
+    // Set up the suffix field
+    //
+    this.suffixLabel = new Label (this);
+    this.suffixLabel.text = "Suffix:";
+    this.suffixLabel.textAlignment = TextAlign_Right|TextAlign_VertCenter;
 
-        this.suffixEdit = new Edit( this );
-        this.suffixEdit.text = CloneWithSuffixParameters.suffix;
-        this.suffixEdit.setScaledFixedWidth( this.font.width( "MMMMMMMMMMMMMMMM" ) );
-        this.suffixEdit.toolTip = "Text to add to the start of the view name";
-        this.suffixEdit.onTextUpdated = function()
-        {
-            CloneWithSuffixParameters.suffix = this.text;
-        };
+    this.suffixEdit = new Edit( this );
+    this.suffixEdit.text = CloneWithSuffixParameters.suffix;
+    this.suffixEdit.setScaledFixedWidth( this.font.width( "MMMMMMMMMMMMMMMM" ) );
+    this.suffixEdit.toolTip = "Text to add to the start of the view name";
+    this.suffixEdit.onTextUpdated = function()
+    {
+        CloneWithSuffixParameters.suffix = this.text;
+    };
 
 
-        this.iconizeCloneCheckBox = new CheckBox( this );
-        this.iconizeCloneCheckBox.text = "Iconize Clone";
-        this.iconizeCloneCheckBox.toolTip = "<p>Check this to iconize the resulting clone</p>";
-        this.iconizeCloneCheckBox.checked = CloneWithSuffixParameters.iconizeAfterClone == true;
-        this.iconizeCloneCheckBox.onCheck = function( checked )
-        {
-            CloneWithSuffixParameters.iconizeAfterClone = checked;
-        };
+    this.iconizeCloneCheckBox = new CheckBox( this );
+    this.iconizeCloneCheckBox.text = "Iconize Clone";
+    this.iconizeCloneCheckBox.toolTip = "<p>Check this to iconize the resulting clone</p>";
+    this.iconizeCloneCheckBox.checked = CloneWithSuffixParameters.iconizeAfterClone == true;
+    this.iconizeCloneCheckBox.onCheck = function( checked )
+    {
+        CloneWithSuffixParameters.iconizeAfterClone = checked;
+    };
 
-        this.suffixSizer = new HorizontalSizer;
-        this.suffixSizer.spacing = 4;
-        this.suffixSizer.add( this.suffixLabel );
-        this.suffixSizer.addSpacing( 8 );
-        this.suffixSizer.add( this.suffixEdit );
-        this.suffixSizer.addStretch();
+    this.suffixSizer = new HorizontalSizer;
+    this.suffixSizer.spacing = 4;
+    this.suffixSizer.add( this.suffixLabel );
+    this.suffixSizer.addSpacing( 8 );
+    this.suffixSizer.add( this.suffixEdit );
+    this.suffixSizer.addStretch();
 
-        // layout the dialog
-        //
-        this.sizer = new VerticalSizer;
-        this.sizer.margin = 8;
-        this.sizer.add(this.title);
-        this.sizer.addSpacing(8);
-        this.sizer.add(this.suffixSizer);
-        this.sizer.addSpacing(8);
-        this.sizer.add( this.iconizeCloneCheckBox );
-        this.sizer.addSpacing(8);
-        this.sizer.add(this.buttonSizer);
-        this.sizer.addStretch();
-    }
+    // layout the dialog
+    //
+    this.sizer = new VerticalSizer;
+    this.sizer.margin = 8;
+    this.sizer.add(this.title);
+    this.sizer.addSpacing(8);
+    this.sizer.add(this.suffixSizer);
+    this.sizer.addSpacing(8);
+    this.sizer.add( this.iconizeCloneCheckBox );
+    this.sizer.addSpacing(8);
+    this.sizer.add(this.buttonSizer);
+    this.sizer.addStretch();
 }
+
+CloneWithSuffixDialog.prototype = new Dialog;
 
 function main() 
 {
