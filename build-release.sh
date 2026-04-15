@@ -18,7 +18,7 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.3.1
+release=v0.3.2
 releaseNotes="Need them both to work"
 #
 # <<<<<<<
@@ -60,7 +60,7 @@ cat << EOF > $releasesDir/updates.xri
     <description>
         <p>This is the repository for PixInsight scripts by theastroshed.com, featuring "Fixed Tiled Zoom" and "Smart Rename View".</p>
     </description>
-    <platform os="all" arch="noarch" version="1.8.8:1.9.9">
+    <platform os="all" arch="noarch" version="1.8.8:1.9.3">
         <package fileName="${zipFileName}" 
                 sha1="${sha1}" 
                 type="script" 
