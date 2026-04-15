@@ -22,10 +22,10 @@
 #feature-info  This script renames the target view after the filter name
 
 #include <pjsr/TextAlign.jsh>
-// #include <pjsr/Sizer.jsh>          // needed to instantiate the VerticalSizer and HorizontalSizer objects
 #include <pjsr/UndoFlag.jsh>
 #include <pjsr/StdIcon.jsh>
 #include <pjsr/StdButton.jsh>
+#include "theAstroShed-utils.js"
 
 // define a global variable containing script's parameters
 var SmartRenameViewParameters = {
@@ -124,7 +124,7 @@ function getAllMainViews()
 /*
  * Construct the script dialog interface
  */
-class SmartRenameViewDialogClass extends Dialog
+class SmartRenameViewDialog extends Dialog
 {
    constructor()
    {
@@ -134,19 +134,14 @@ class SmartRenameViewDialogClass extends Dialog
 
       // set the minimum width of the dialog
       //
-      this.scaledMinWidth = 340;
-      this.scaledMaxWidth = 340;
-
-      // set the minimum width of the dialog
-      //
-      this.scaledMinheight = 300;
-      this.scaledMaxheight = 300;
+      this.scaledMinWidth = 500;
+      this.scaledMaxWidth = 500;
 
       // create a title area
       //
       this.title = new TextBox(this);
       this.title.text = "<b>Smart Rename View</b><br><br>Rename the view based on the filter" +
-                      "<br><br>don't forget delimiters if you use prefix and/or suffix " +
+                      "<br><br>Don't forget delimiters if you use prefix and/or suffix " +
                       "<br><br><b>Usage:</b>" +
                       "<br> - Drag a new instance onto your workspace, then drop that Script Process Icon on a single image to rename" +
                       "<br> - Select a view in the dropdown and 'Apply' (square)" +
@@ -154,8 +149,8 @@ class SmartRenameViewDialogClass extends Dialog
       ;
       this.title.readOnly = true;
       this.title.backroundColor = 0x333333ff;
-      this.title.minHeight = 180;
-      this.title.maxHeight = 180;
+      this.title.minHeight = 225;
+      this.title.maxHeight = 225;
 
       // add a view picker
       //
@@ -187,7 +182,7 @@ class SmartRenameViewDialogClass extends Dialog
       //
       this.newInstanceButton = new ToolButton( this );
       this.newInstanceButton.icon = this.scaledResource( ":/process-interface/new-instance.png" );
-      this.newInstanceButton.setScaledFixedSize( 24, 24 );
+      this.newInstanceButton.setScaledFixedSize( 18, 18 );
       this.newInstanceButton.toolTip = "Save Instance";
       this.newInstanceButton.onMousePress = () => {
           // stores the parameters
@@ -200,7 +195,7 @@ class SmartRenameViewDialogClass extends Dialog
       //
       this.applyGlobalButton = new ToolButton( this );
       this.applyGlobalButton.icon = this.scaledResource( ":/process-interface/apply-global.png" );
-      this.applyGlobalButton.setScaledFixedSize( 24, 24 );
+      this.applyGlobalButton.setScaledFixedSize( 18, 18 );
       this.applyGlobalButton.toolTip = "Apply Global";
       this.applyGlobalButton.onMousePress = () => {
           // applyGlobally();
@@ -329,7 +324,7 @@ function main()
 
     // direct contect, create and show the dialog
     //
-    let dialog = new SmartRenameViewDialogClass;
+    let dialog = new SmartRenameViewDialog;
 
     dialog.execute();
 }

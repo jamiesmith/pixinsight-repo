@@ -23,7 +23,6 @@
 #feature-info  This script renames the target view after the filter name
 
 #include <pjsr/TextAlign.jsh>
-// #include <pjsr/Sizer.jsh>          // needed to instantiate the VerticalSizer and HorizontalSizer objects
 #include <pjsr/UndoFlag.jsh>
 #include <pjsr/StdIcon.jsh>
 #include <pjsr/StdButton.jsh>
@@ -153,13 +152,13 @@ class FixTiledZoomDialog extends Dialog
 
         // set the minimum width of the dialog
         //
-        this.scaledMinWidth = 240;
-        this.scaledMaxWidth = 340;
+        this.scaledMinWidth = 400;
+        this.scaledMaxWidth = 400;
 
         // set the minimum width of the dialog
         //
         this.scaledMinheight = 300;
-        this.scaledMaxheight = 200;
+        this.scaledMaxheight = 300;
 
         // create a title area
         //
@@ -169,14 +168,14 @@ class FixTiledZoomDialog extends Dialog
 
         this.title.readOnly = true;
         this.title.backroundColor = 0x333333ff;
-        this.title.minHeight = 100;
-        this.title.maxHeight = 100;
+        this.title.minHeight = 150;
+        this.title.maxHeight = 150;
 
         // Add create instance button
         //
         this.newInstanceButton = new ToolButton( this );
         this.newInstanceButton.icon = this.scaledResource( ":/process-interface/new-instance.png" );
-        this.newInstanceButton.setScaledFixedSize( 24, 24 );
+        this.newInstanceButton.setScaledFixedSize( 18, 18 );
         this.newInstanceButton.toolTip = "Save Instance";
         this.newInstanceButton.onMousePress = () => {
             // stores the parameters
@@ -189,7 +188,7 @@ class FixTiledZoomDialog extends Dialog
         //
         this.applyGlobalButton = new ToolButton( this );
         this.applyGlobalButton.icon = this.scaledResource( ":/process-interface/apply-global.png" );
-        this.applyGlobalButton.setScaledFixedSize( 24, 24 );
+        this.applyGlobalButton.setScaledFixedSize( 18, 18 );
         this.applyGlobalButton.toolTip = "Apply Global";
         this.applyGlobalButton.onMousePress = () => {
             applyToAll();

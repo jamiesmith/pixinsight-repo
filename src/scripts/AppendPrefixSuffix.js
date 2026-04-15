@@ -26,6 +26,7 @@
 #include <pjsr/UndoFlag.jsh>
 #include <pjsr/StdIcon.jsh>
 #include <pjsr/StdButton.jsh>
+#include "theAstroShed-utils.js"
 
 // define a global variable containing script's parameters
 var AppendPrefixSuffixParameters = {
@@ -91,18 +92,6 @@ function renameView(view, prefix = "", suffix = "")
     view.id = newId;
 }
 
-function getAllMainViews()
-{
-    var mainViews = [];
-    var images = ImageWindow.windows;
-    for ( var i in images ) {
-        if (images[i].mainView.isMainView && images[i].visible && (!images[i].iconic)) {            
-            mainViews.push(images[i].mainView);
-        }
-    }
-    return mainViews;
-}
-
 /*
  * Construct the script dialog interface
  */
@@ -113,34 +102,28 @@ class AppendPrefixSuffixDialog extends Dialog
         super();
 
         // let the dialog to be resizable by dragging its borders
+        //
         this.userResizable = false;
 
         // set the minimum width of the dialog
         //
-        this.scaledMinWidth = 300;
-        this.scaledMaxWidth = 300;
-
-        // set the minimum height of the dialog
-        //
-        this.scaledMinheight = 260;
-        this.scaledMaxheight = 260;
+        this.scaledMinWidth = 450;
+        this.scaledMaxWidth = 450;
 
         // create a title area
         //
         this.title = new TextBox(this);
-        this.title.text = "<b>Append Prefix and/or Suffix</b><br><br>Append a prefix or suffix to the instance ID" +
+        this.title.text = "<b>Append Prefix and/or Suffix</b><br><br>Append a prefix and/or suffix to the instance ID" +
                         "<br><br><b>Usage:</b>" +
         "<br>Drag a new instance onto your workspace, then drop that Script Process Icon on a single image to rename (This is intended to be used in a set of saved process icons)" ;
         this.title.readOnly = true;
         this.title.backroundColor = 0x333333ff;
-        this.title.minHeight = 170;
-        this.title.maxHeight = 170;
 
         // Add create instance button
         //
         this.newInstanceButton = new ToolButton( this );
         this.newInstanceButton.icon = this.scaledResource( ":/process-interface/new-instance.png" );
-        this.newInstanceButton.setScaledFixedSize( 24, 24 );
+        this.newInstanceButton.setScaledFixedSize( 18, 18 );
         this.newInstanceButton.toolTip = "Save Instance";
         this.newInstanceButton.onMousePress = () => {
             // stores the parameters
@@ -153,7 +136,7 @@ class AppendPrefixSuffixDialog extends Dialog
         //
         this.applyGlobalButton = new ToolButton( this );
         this.applyGlobalButton.icon = this.scaledResource( ":/process-interface/apply-global.png" );
-        this.applyGlobalButton.setScaledFixedSize( 24, 24 );
+        this.applyGlobalButton.setScaledFixedSize( 18, 18 );
         this.applyGlobalButton.toolTip = "Apply Global";
         this.applyGlobalButton.onMousePress = () => {
             // applyGlobally();

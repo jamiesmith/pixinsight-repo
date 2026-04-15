@@ -79,13 +79,13 @@ function resampleView(view, ratio)
     //
     P.xSize = ratio;
     P.ySize = ratio;
-    P.mode = Resample.prototype.RelativeDimensions;
-    P.absoluteMode = Resample.prototype.ForceWidthAndHeight;
+    P.mode = Resample.RelativeDimensions;
+    P.absoluteMode = Resample.ForceWidthAndHeight;
     P.xResolution = 72.000;
     P.yResolution = 72.000;
     P.metric = false;
     P.forceResolution = false;
-    P.interpolation = Resample.prototype.Auto;
+    P.interpolation = Resample.Auto;
     P.clampingThreshold = 0.30;
     P.smoothness = 1.50;
     P.gammaCorrection = false;
@@ -114,4 +114,18 @@ function getOptimalZoomForWindow(window)
             zoom));
 
     return zoom;
+}
+
+function getAllMainViews()
+{
+    var mainViews = [];
+    var images = ImageWindow.windows;
+    for ( var i in images ) 
+    {
+        if (images[i].mainView.isMainView && images[i].visible && (!images[i].iconic))
+        {
+            mainViews.push(images[i].mainView);
+        }
+    }
+    return mainViews;
 }
