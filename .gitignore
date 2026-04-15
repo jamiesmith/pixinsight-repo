@@ -1,3 +1,4 @@
 *.xsgn
 tmpBuild
 oldReleases
+.DS_store
