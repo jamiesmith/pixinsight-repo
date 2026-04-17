@@ -18,8 +18,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.3.2
-releaseNotes="Need them both to work"
+release=v0.3.3
+releaseNotes="Probably the last release for the SpiderMonkey engine"
 #
 # <<<<<<<
 
