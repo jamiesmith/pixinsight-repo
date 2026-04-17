@@ -5,21 +5,22 @@
 shopt -s globstar
 # Just setting up some variables
 #
+engine=v8
 scriptsDir="src/scripts"
 releasesDir="$(pwd)/"
 
-buildDir=tmpBuild
+buildDir="$(pwd)/tmpBuild"
 rm -rf "${buildDir}"
 mkdir -p "${buildDir}"
-cp -r src "${buildDir}/"
+cp -r ${engine}/src "${buildDir}/"
 cd "${buildDir}"
 
 # CHANGE THESE, then run the script
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.3.3
-releaseNotes="Probably the last release for the SpiderMonkey engine"
+release=v0.4.0
+releaseNotes="Switching to the V8 runtime"
 #
 # <<<<<<<
 
@@ -35,7 +36,7 @@ today=$(date +"%Y-%m-%d")
 # figure out if we need a suffix
 #
 suffix=""
-baseZipFileName="${pluginName}-${today}"
+baseZipFileName="${pluginName}-${engine}-${today}"
 if [ -f "${releasesDir}/${baseZipFileName}.zip" ]
 then
     suffix="-$(ls "${releasesDir}" | grep -c "${baseZipFileName}")"
@@ -57,10 +58,10 @@ echo zipFileName is $zipFileName
 cat << EOF > $releasesDir/updates.xri
 <?xml version="1.0" encoding="UTF-8"?>
 <xri version="1.0">
-    <description>
-        <p>This is the repository for PixInsight scripts by theastroshed.com, featuring "Fixed Tiled Zoom" and "Smart Rename View".</p>
-    </description>
-    <platform os="all" arch="noarch" version="1.8.8:1.9.3">
+	<description>
+		<p>This is the repository for PixInsight scripts by theastroshed.com, featuring &quot;Fixed Tiled Zoom&quot; and &quot;Smart Rename View&quot;.</p>
+	</description>
+    <platform os="all" arch="noarch" version="1.9.4:1.9.4">
         <package fileName="${zipFileName}" 
                 sha1="${sha1}" 
                 type="script" 
@@ -74,7 +75,19 @@ cat << EOF > $releasesDir/updates.xri
                 </p>
             </description>
         </package>
-    </platform>
+    </platform>    
+	<platform os="all" arch="noarch" version="1.8.8:1.9.3">
+		<package fileName="TheAstroShedScripts-2026-04-17.zip" sha1="a821617257902f4bfd3070896734b96b5d15c457" type="script" releaseDate="20260417">
+			<title>
+                The Astroshed Plugins version 2026-04-17 
+			</title>
+			<description>
+				<p>
+                    2026-04-17: Need them both to work
+                </p>
+			</description>
+		</package>
+	</platform>
 </xri>
 EOF
 
