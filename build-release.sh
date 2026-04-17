@@ -19,8 +19,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.4.0
-releaseNotes="Switching to the V8 runtime"
+release=v0.4.1
+releaseNotes="Switching to the V8 runtime (rebuild)"
 #
 # <<<<<<<
 
@@ -67,7 +67,7 @@ cat << EOF > $releasesDir/updates.xri
                 type="script" 
                 releaseDate="${releaseDate}">
             <title>
-                The Astroshed Plugins version $version 
+                The Astroshed Plugins version $version (${engine})
             </title>
             <description>
                 <p>
