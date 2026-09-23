@@ -1,4 +1,4 @@
-#!/opt/homebrew/bin/bash
+#!/usr/local/bin/bash
 
 ### #!/usr/local/bin/bash
 
@@ -19,8 +19,8 @@ cd "${buildDir}"
 # >>>>>>>
 #
 read -p "Did you change the release notes and version? if so, press enter to continue"
-release=v0.4.1
-releaseNotes="Switching to the V8 runtime (rebuild)"
+release=v0.4.2
+releaseNotes="expanding to 1.9.5"
 #
 # <<<<<<<
 
@@ -61,7 +61,7 @@ cat << EOF > $releasesDir/updates.xri
 	<description>
 		<p>This is the repository for PixInsight scripts by theastroshed.com, featuring &quot;Fixed Tiled Zoom&quot; and &quot;Smart Rename View&quot;.</p>
 	</description>
-    <platform os="all" arch="noarch" version="1.9.4:1.9.4">
+    <platform os="all" arch="noarch" version="1.9.4:1.9.9">
         <package fileName="${zipFileName}" 
                 sha1="${sha1}" 
                 type="script" 
